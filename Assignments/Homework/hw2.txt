@@ -1,0 +1,22 @@
+Brandon Truong
+
+Magic 8-ball
+1.
+Since we know that magic 8-ball starts at the address
+0x7fffffffe000 and that we are looking for magic8ball[3][4], we can find the address by taking [3][4] and converting it based on the base of 8, giving us 
+3 * 64 + 4 * 8 = 224
+By converting it to hex, I get 0xe0. 
+Since we start at e000, we get 0x7fffffffe0e0 as our address for magic8ball[3][4].
+
+The values we get are
+
+0x57 0x72 0x6f 0x6e 0x67 0x00 0x00 0x00
+
+which we can convert to ascii, giving us
+
+Wrong
+
+with 0x00 being null, thus signifying the end.
+
+This means the statement printf(“%s”, magic8ball[3][4]); prints out:
+Wrong

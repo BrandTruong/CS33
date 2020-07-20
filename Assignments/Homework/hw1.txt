@@ -1,0 +1,23 @@
+Brandon Truong
+
+Question 2.71
+a.
+The previous coder does not take into account the +/- sign part of the 32-bit value. The bitwise & 0xFF will never return negative since we evaluate it with a 32-bit, leaving it as 0x000000FF. Since the original 4 signed bytes are evaluated with two's complement and can be either positive or negative, we need to evaluate them as such. 
+
+b.
+int xbyte(packed_t word, int bytenum)
+{
+  return ((signed) word << ((3 - bytenum) << 3)) >> 24;
+}
+
+Question 2.82
+A. Sometimes 0
+in a 32-bit we can go from -2^(w-1) to 2^(w-1)-1. However, we can't convert the most negative number to its positive equivalent since we then get an overflow, thus causing either undefined behavior or wrapping around, which can result in false.
+B. 1
+since left shift by 4 is the same as multiply by 2^4, we can thus separate it to be x*2^4+y*2^4+y-x, which we can then simplify to 17*y+15*x. Thus both sides equal each other.
+C. 1
+since we use two's complement, the ~ operator is the same as taking the negative of the value and subtracting by 1. Since there is an imbalance of ~ signs, the + 1 on the left side helps balance it out, thus making each other equal each other.
+D. 1
+casting does not change the bits, only how the bits are interpreted, meaning the operations in the right can be simplified to x-y, which is then cast to unsigned to become ux-uy.
+E. 1
+since we right shift by 2, then left shift by 2, we essentially replace the 2 rightmost bits with 0, thus the shifted version of x will always be less than or equal to x. (if the two LSB are 11, then they become 00, making the shifted version 3 less than x, or if the two LSB are 00, then they don't change and thus equal)
